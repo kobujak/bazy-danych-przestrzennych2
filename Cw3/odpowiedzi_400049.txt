@@ -1,0 +1,12 @@
+4.b
+
+W Lookup No Match Output zapisywane są rekordy które nie spełniają warunku zdefiniowane w komponencie Lookup.
+W przypadku zadania 3, zapisane tam zostaną rekordy z tabeli dbo.FactCurrency, gdzie indeks waluty CurrencyKey,
+nie ma odpowiednika w tabeli dbo.CurrencyDim.
+
+9.e
+
+Główną różnicą ETL i kwerend jest cała warstwa wizualizująca procesy w łatwej do zrozumienia formie.
+Jest to niewątpliwa przewaga ETL przyspieszająca analizę procesu, a także jego późniejsze utrzymanie.
+Według mnie, największą wadą narzędzi ETL są koszty oraz czas poświęcony na naukę pracy w danym środowisku 
+

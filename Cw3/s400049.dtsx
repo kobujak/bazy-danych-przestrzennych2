@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-KJ0H58U"
   DTS:CreatorName="DESKTOP-KJ0H58U\kondz"
-  DTS:DTSID="{B60EBB63-1EF0-472C-9027-411BCD760F1E}"
+  DTS:DTSID="{3238F896-3D74-415A-9AFC-AEBB9445457E}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5314.0"
   DTS:LocaleID="1045"
-  DTS:ObjectName="cw3"
+  DTS:ObjectName="s400049"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{388C30E5-19DE-470C-AD40-4FB8C048C5CB}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{642EFA5C-27E1-499C-8C1D-B00B1D442F35}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -90,7 +90,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1250"
-          DTS:ConnectionString="C:\Users\kondz\Desktop\BDP2\cw3_400049.csv">
+          DTS:ConnectionString="C:\Users\kondz\Desktop\BDP2\zadania\bazy-danych-przestrzennych2\Cw3\cw3_400049.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -98,7 +98,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="CurrencyKey"
-              DTS:DTSID="{FEAFEC35-8287-4140-97D5-A5894292DF89}"
+              DTS:DTSID="{011F8830-9072-48E6-BFA8-A31F0C5045F1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -106,7 +106,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="DateKey"
-              DTS:DTSID="{24343492-EC97-485B-8D0A-C3B4206C4D83}"
+              DTS:DTSID="{EA224A0B-E2F6-480F-8CE2-7A0BD85FC6FA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -114,7 +114,7 @@
               DTS:DataType="5"
               DTS:TextQualified="True"
               DTS:ObjectName="AverageRate"
-              DTS:DTSID="{F6D73B06-BC20-41B2-B911-8007EB39D65C}"
+              DTS:DTSID="{27909410-DCA0-49E1-B548-61F7DABAEE07}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -122,7 +122,7 @@
               DTS:DataType="5"
               DTS:TextQualified="True"
               DTS:ObjectName="EndOfDayRate"
-              DTS:DTSID="{06A442A6-0B25-4F33-B720-3E8672FEC338}"
+              DTS:DTSID="{B6C9CF58-8406-457E-9D5E-67FF220D7EB8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -130,7 +130,7 @@
               DTS:DataType="135"
               DTS:TextQualified="True"
               DTS:ObjectName="Date"
-              DTS:DTSID="{B3853E7C-E604-4471-A95F-A68CCD7C4776}"
+              DTS:DTSID="{EEC6BB96-088F-4735-86AA-93EF2F38C0B9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -139,7 +139,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="CurrencyAlternateKey"
-              DTS:DTSID="{B48E85DC-E392-4F04-A59D-E54D6DE8DDFD}"
+              DTS:DTSID="{D49FB221-C653-4AE1-A92C-6672B8CF402C}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -931,13 +931,13 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">(#{Package\cw3\Lookup.Outputs[Lookup Match Output].Columns[CurrencyAlternateKey]} == "EUR" || #{Package\cw3\Lookup.Outputs[Lookup Match Output].Columns[CurrencyAlternateKey]} == "GBP") &amp;&amp; [DATEDIFF]("yyyy",#{Package\cw3\fctcurrencyrate.Outputs[OLE DB Source Output].Columns[Date]},[GETDATE]()) &gt;= @[$Package::YearsAgo]</property>
+                      name="Expression">(#{Package\cw3\Lookup.Outputs[Lookup Match Output].Columns[CurrencyAlternateKey]} == "EUR" || #{Package\cw3\Lookup.Outputs[Lookup Match Output].Columns[CurrencyAlternateKey]} == "GBP") &amp;&amp; [DATEADD]("yyyy",-@[$Package::YearsAgo],[GETDATE]()) &gt;= #{Package\cw3\fctcurrencyrate.Outputs[OLE DB Source Output].Columns[Date]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">(CurrencyAlternateKey == "EUR" || CurrencyAlternateKey == "GBP") &amp;&amp; DATEDIFF("yyyy",Date,GETDATE()) &gt;= @[$Package::YearsAgo]</property>
+                      name="FriendlyExpression">(CurrencyAlternateKey == "EUR" || CurrencyAlternateKey == "GBP") &amp;&amp; DATEADD("yyyy",-@[$Package::YearsAgo],GETDATE()) &gt;= Date</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -1665,6 +1665,10 @@ where [refTable].[CurrencyKey] = ?</property>
           Id="Package\cw3\Flat File Destination"
           TopLeft="612,668" />
         <NodeLayout
+          Size="159,42"
+          Id="Package\cw3\Conditional Split"
+          TopLeft="575,536" />
+        <NodeLayout
           Size="152,42"
           Id="Package\cw3\fctcurrencyrate"
           TopLeft="60,60" />
@@ -1706,10 +1710,6 @@ where [refTable].[CurrencyKey] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\cw3\Conditional Split"
-          TopLeft="575,536" />
         <EdgeLayout
           Id="Package\cw3.Paths[Lookup Match Output]"
           TopLeft="322.5,239">
@@ -1791,7 +1791,7 @@ where [refTable].[CurrencyKey] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1801,7 +1801,7 @@ where [refTable].[CurrencyKey] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
