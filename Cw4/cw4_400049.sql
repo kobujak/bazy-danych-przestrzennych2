@@ -1,0 +1,16 @@
+use AdventureWorksDW2019
+
+-- PostgreSQL, SQL Server, MySQL
+
+SELECT *
+FROM --INFORMATION_SCHEMA.COLUMNS  
+INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE TABLE_SCHEMA = 'dbo'
+AND TABLE_NAME='FactInternetSales'
+
+/* ORACLE
+
+DESCRIBE dbo.FactInternetSales
+
+
+*/

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## 2023-11-07
+
+### Added
+
+- Package `/Cw4/s400049.dtsx` which joins 3 tables from AdventureWorksDW2019 database, 
+  creates new column with customer info and returns only records with purchase of socks
+- Output file `/Cw4/cw4_400049.txt` created by exectution of .dtsx package.
+- Sql query with dbo.FactInternetSales table information `/Cw4/cw4_400049.sql`
+
+
 ## 2023-10-29
 
 ### Added
@@ -19,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Conditional Split in `/Cw3/s400049.dtsx`
 
 ### Changed
+
 - SSIS package `/Cw3/s400049.dtsx`
 - Output file `/Cw3/cw3_400049.csv`
 
