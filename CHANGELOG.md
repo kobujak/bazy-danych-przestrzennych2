@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## 2023-11-13
+
+### Added
+
+- Package `/Cw5/s400049.dtsx` which counts number of sales from each day from FactInternetSales table in AdventureWorksDW2019 database.
+- Screenshot `/Cw5/zadanie7_400049.png` of Data Viewer from .dtsx package execution.
+- Sql file `/Cw5/zadanie8_400049.sql` with three queries,
+  first mimicking .dtsx package, second limits result by showing days with less than 100 sales
+  and third outputs three products with highest Unit Price.
+
+
 ## 2023-11-07
 
 ### Added
