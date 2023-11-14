@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## 2023-11-14
+
+### Added
+
+- New Screenshot `/Cw5/zadanie7_400049.png` of Data Viewer from .dtsx package execution.
+
+### Fixed
+
+- Fixed Package `/Cw5/s400049.dtsx` which now counts number of orders in each day instead of individual sold products.
+- Query 8 and query 8a `/Cw5/zadanie8_400049.sql` to show Orders count instead of individual sold products
+
 ## 2023-11-13
 
 ### Added

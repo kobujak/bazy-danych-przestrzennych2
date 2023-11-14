@@ -12,8 +12,8 @@
   DTS:ObjectName="s400049"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="64"
-  DTS:VersionGUID="{E9786F47-0D9E-435C-946F-4514190A5F5D}">
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{9EE08026-5D57-457F-A7AF-AD7FF3721DFA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3167,15 +3167,16 @@ where [refTable].[CurrencyKey] = ?</property>
                   name="Aggregate Input 1">
                   <inputColumns>
                     <inputColumn
+                      refId="Package\cw5\Aggregate.Inputs[Aggregate Input 1].Columns[SalesOrderNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="SalesOrderNumber"
+                      lineageId="Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
+                    <inputColumn
                       refId="Package\cw5\Aggregate.Inputs[Aggregate Input 1].Columns[OrderDate]"
                       cachedDataType="dbTimeStamp"
                       cachedName="OrderDate"
                       lineageId="Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[OrderDate]" />
-                    <inputColumn
-                      refId="Package\cw5\Aggregate.Inputs[Aggregate Input 1].Columns[Orders_cnt]"
-                      cachedDataType="ui4"
-                      cachedName="Orders_cnt"
-                      lineageId="Package\cw5\Data Conversion.Outputs[Data Conversion Output].Columns[Orders_cnt]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -3198,7 +3199,7 @@ where [refTable].[CurrencyKey] = ?</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\cw5\Aggregate.Outputs[Aggregate Output 1].Columns[Orders_cnt]"
-                      dataType="ui8"
+                      dataType="ui4"
                       lineageId="Package\cw5\Aggregate.Outputs[Aggregate Output 1].Columns[Orders_cnt]"
                       name="Orders_cnt">
                       <properties>
@@ -3206,12 +3207,12 @@ where [refTable].[CurrencyKey] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the ID of the input column used in the aggregation."
-                          name="AggregationColumnId">#{Package\cw5\Data Conversion.Outputs[Data Conversion Output].Columns[Orders_cnt]}</property>
+                          name="AggregationColumnId">#{Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies the type of aggregation."
                           name="AggregationType"
-                          typeConverter="AggregationType">1</property>
+                          typeConverter="AggregationType">3</property>
                         <property
                           dataType="System.Int32"
                           description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
@@ -3220,6 +3221,14 @@ where [refTable].[CurrencyKey] = ?</property>
                           dataType="System.Int32"
                           description="Specifies the string comparison options."
                           name="AggregationComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                          name="CountDistinctScale">0</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                          name="CountDistinctKeys">0</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -3254,50 +3263,6 @@ where [refTable].[CurrencyKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\cw5\Copy Column"
-              componentClassID="Microsoft.CopyMap"
-              contactInfo="Copy Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Copies input columns to new columns in the transformation output. For example, create a copy of the 'address' column so that it can be cleaned by subsequent transformations and leave the original column in place for auditing."
-              name="Copy Column">
-              <inputs>
-                <input
-                  refId="Package\cw5\Copy Column.Inputs[Copy Column Input]"
-                  name="Copy Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\cw5\Copy Column.Inputs[Copy Column Input].Columns[ProductKey]"
-                      cachedDataType="i4"
-                      cachedName="ProductKey"
-                      lineageId="Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[ProductKey]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\cw5\Copy Column.Outputs[Copy Column Output]"
-                  name="Copy Column Output"
-                  synchronousInputId="Package\cw5\Copy Column.Inputs[Copy Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\cw5\Copy Column.Outputs[Copy Column Output].Columns[Copy of ProductKey]"
-                      dataType="i4"
-                      lineageId="Package\cw5\Copy Column.Outputs[Copy Column Output].Columns[Copy of ProductKey]"
-                      name="Copy of ProductKey">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the column to copy."
-                          name="copyColumnId">#{Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[ProductKey]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\cw5\Data Conversion"
               componentClassID="Microsoft.DataConvert"
               contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -3310,10 +3275,10 @@ where [refTable].[CurrencyKey] = ?</property>
                   name="Data Conversion Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\cw5\Data Conversion.Inputs[Data Conversion Input].Columns[Copy of ProductKey]"
+                      refId="Package\cw5\Data Conversion.Inputs[Data Conversion Input].Columns[ProductKey]"
                       cachedDataType="i4"
-                      cachedName="Copy of ProductKey"
-                      lineageId="Package\cw5\Copy Column.Outputs[Copy Column Output].Columns[Copy of ProductKey]" />
+                      cachedName="ProductKey"
+                      lineageId="Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[ProductKey]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -3338,7 +3303,7 @@ where [refTable].[CurrencyKey] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\cw5\Copy Column.Outputs[Copy Column Output].Columns[Copy of ProductKey]}</property>
+                          name="SourceInputColumnLineageID">#{Package\cw5\FactInternetSales.Outputs[OLE DB Source Output].Columns[ProductKey]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -4008,7 +3973,7 @@ where [refTable].[CurrencyKey] = ?</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\cw5\Sort.Inputs[Sort Input].Columns[Orders_cnt]"
-                      cachedDataType="ui8"
+                      cachedDataType="ui4"
                       cachedName="Orders_cnt"
                       lineageId="Package\cw5\Aggregate.Outputs[Aggregate Output 1].Columns[Orders_cnt]">
                       <properties>
@@ -4050,7 +4015,7 @@ where [refTable].[CurrencyKey] = ?</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\cw5\Sort.Outputs[Sort Output].Columns[Orders_cnt]"
-                      dataType="ui8"
+                      dataType="ui4"
                       lineageId="Package\cw5\Sort.Outputs[Sort Output].Columns[Orders_cnt]"
                       name="Orders_cnt"
                       sortKeyPosition="-1">
@@ -4088,18 +4053,13 @@ where [refTable].[CurrencyKey] = ?</property>
               name="Aggregate Output 1"
               startId="Package\cw5\Aggregate.Outputs[Aggregate Output 1]" />
             <path
-              refId="Package\cw5.Paths[Copy Column Output]"
-              endId="Package\cw5\Data Conversion.Inputs[Data Conversion Input]"
-              name="Copy Column Output"
-              startId="Package\cw5\Copy Column.Outputs[Copy Column Output]" />
-            <path
               refId="Package\cw5.Paths[Data Conversion Output]"
               endId="Package\cw5\Aggregate.Inputs[Aggregate Input 1]"
               name="Data Conversion Output"
               startId="Package\cw5\Data Conversion.Outputs[Data Conversion Output]" />
             <path
               refId="Package\cw5.Paths[OLE DB Source Output]"
-              endId="Package\cw5\Copy Column.Inputs[Copy Column Input]"
+              endId="Package\cw5\Data Conversion.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\cw5\FactInternetSales.Outputs[OLE DB Source Output]" />
             <path
@@ -4917,107 +4877,33 @@ where [refTable].[CurrencyKey] = ?</property>
         <NodeLayout
           Size="165,42"
           Id="Package\cw5\FactInternetSales"
-          TopLeft="431,22" />
-        <NodeLayout
-          Size="146,42"
-          Id="Package\cw5\Copy Column"
-          TopLeft="438,102" />
-        <EdgeLayout
-          Id="Package\cw5.Paths[OLE DB Source Output]"
-          TopLeft="512.25,64">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38"
-              Start="0,0"
-              End="0,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="161,42"
-          Id="Package\cw5\Data Conversion"
-          TopLeft="434,183" />
-        <EdgeLayout
-          Id="Package\cw5.Paths[Copy Column Output]"
-          TopLeft="512.75,144">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39"
-              Start="0,0"
-              End="0,31.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\cw5\Aggregate"
-          TopLeft="446,273" />
-        <EdgeLayout
-          Id="Package\cw5.Paths[Data Conversion Output]"
-          TopLeft="512.75,225">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="423,29" />
         <NodeLayout
           Size="170,42"
           Id="Package\cw5\Data Conversion 1"
-          TopLeft="427,515" />
+          TopLeft="418,577" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\cw5\Aggregate"
+          TopLeft="431,289" />
         <NodeLayout
           Size="99,42"
           Id="Package\cw5\Sort"
-          TopLeft="458,368" />
+          TopLeft="452,400" />
         <EdgeLayout
           Id="Package\cw5.Paths[Aggregate Output 1]"
-          TopLeft="509.25,315">
+          TopLeft="498.75,331">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,53"
+              EndConnector="0,69"
               Start="0,0"
-              End="0,45.5">
+              End="0,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.5" />
+                    End="0,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5028,26 +4914,74 @@ where [refTable].[CurrencyKey] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\cw5.Paths[Sort Output]"
-          TopLeft="509.75,410">
+          TopLeft="502.25,442">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,105"
+              EndConnector="0,135"
               Start="0,0"
-              End="0,97.5">
+              End="0,127.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,97.5" />
+                    End="0,127.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,40.75,16,16"
+              BoundingBox="-8,55.75,16,16"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161,42"
+          Id="Package\cw5\Data Conversion"
+          TopLeft="421,175" />
+        <EdgeLayout
+          Id="Package\cw5.Paths[Data Conversion Output]"
+          TopLeft="498.75,217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\cw5.Paths[OLE DB Source Output]"
+          TopLeft="503.5,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,104"
+              Start="0,0"
+              End="0,96.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,96.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

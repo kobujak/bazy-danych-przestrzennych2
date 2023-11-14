@@ -4,7 +4,7 @@ use AdventureWorksDW2019
 
 SELECT 
 	FIS.OrderDate, 
-	Count(*) as Orders_cnt
+	Count(DISTINCT SalesOrderNumber) as Orders_cnt
 FROM dbo.FactInternetSales FIS
 GROUP BY FIS.OrderDate
 ORDER BY Orders_cnt DESC
@@ -13,10 +13,10 @@ ORDER BY Orders_cnt DESC
 
 SELECT 
 	FIS.OrderDate, 
-	Count(*) as Orders_cnt
+	Count(DISTINCT SalesOrderNumber) as Orders_cnt
 FROM dbo.FactInternetSales FIS
 GROUP BY FIS.OrderDate
-HAVING Count(*) < 100
+HAVING Count(DISTINCT SalesOrderNumber) < 100
 ORDER BY Orders_cnt DESC
 
 ------ zadanie 8 b)
