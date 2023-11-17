@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## 2023-11-14
+
+### Added
+
+- Package `/Cw6/s400049.dtsx` with SCD transformation workin on *stg_dimemp* and *scd_dimemp* tables.
+- Sql file `/Cw6/cw6_400049.sql` which creates *stg_dimemp* and *scd_dimemp* tables based on *DimEmployee* table from AdventureWorksDW2019 database.
+  This file also contains updates to test SSIS process and answers to questions 6 and 7 from Exercise 6.
 
 ## 2023-11-14
 
