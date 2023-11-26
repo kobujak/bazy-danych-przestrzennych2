@@ -6,7 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## 2023-11-14
+
+## 2023-11-26
+
+### Added
+
+- Package `/Cw7/s400049.dtsx` which checks if file `/Cw7/Customers_FULL.xml` exists. If the result is true, truncates all existing data from *CSV_Customers* table and inserts records from `/Cw7/Customers_FULL.xml` file and sets current date.
+  as CREATE_TIMESTAMP
+  If result is false, file `/Cw7/Customers_09DEC2020.xml` is used as a source file. Package compares existing records in *CSV_Customers* table with records in file. If records with the same FirstName, LastName and EmailAdress exists, it performs 
+  an update and sets current date in UPDATE_TIMESTAMP field. When record has no match in database it is inserted into *CSV_Customers* and CREATE_TIMESTAMP is set for this entry.
+- Sql file `/Cw7/cw7.sql` which creates *CSV_Customers* table in AdventureWorksDW2019 database and queries data from this table which is used for screenshot.
+- Screenshot `/Cw7/cw7_400049.png` with results of `/Cw7/s400049.dtsx` package execution.
+- Source file `/Cw7/Customers_FULL.xml` with `/Cw7/Customers_FULL.xsd` schema
+- Source file `/Cw7/Customers_09DEC2020.xml` with `/Cw7/Customers_09DEC2020.xsd` schema
+
+
+## 2023-11-17
 
 ### Added
 
