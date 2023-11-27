@@ -1,0 +1,17 @@
+use AdventureWorksDW2019
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'AUDIT_TABLE' AND TABLE_SCHEMA = 'dbo')
+   DROP TABLE [dbo].[AUDIT_TABLE];
+GO
+
+CREATE TABLE dbo.AUDIT_TABLE (
+
+	JobID int,
+	StartDT datetime,
+	EndDT datetime,
+	RowCnt int
+
+);
+
+SELECT * FROM AUDIT_TABLE
+
