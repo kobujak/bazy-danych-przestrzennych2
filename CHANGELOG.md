@@ -11,11 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Package `/Cw9/s400049.dtsx` which creates *STG_CUSTOMERS* table, unzips provided file. Data from unzipped files is inserted into previously created table using Foreach loop container.
+  Email adress is set to null for records from every second file using For loop container.
+- Screenshot `/Cw8/cw8_400049.png` with results of package execution from *STG_CUSTOMERS* table.
+
+## 2023-12-04
+
+### Added
+
 - Screenshot `/Cw8/cw8_400049_sql.png` with results from audit table.
 
 ### Changed
 
 - Renamed `/Cw8/cw8_400049.png` to `/Cw8/cw8_400049_ssis.png`
+
 
 ## 2023-11-27
 
