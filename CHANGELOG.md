@@ -7,13 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## 2023-12-04
+
+### Added
+
+- Screenshot `/Cw8/cw8_400049_sql.png` with results from audit table.
+
+### Changed
+
+- Renamed `/Cw8/cw8_400049.png` to `/Cw8/cw8_400049_ssis.png`
+
 ## 2023-11-27
 
 ### Added
 
 - Package `/Cw8/s400049.dtsx` which checks which implements audit logic in data flow created in `/Cw7/s400049.dtsx`.
 - Sql file `/Cw8/cw8_400049.sql` which creates *AUDIT_TABLE* table in AdventureWorksDW2019 to insert audit records.
-- Screenshot `/Cw8/cw78400049.png` with control flow from `/Cw8/s400049.dtsx` package.
+- Screenshot `/Cw8/cw8_400049.png` with control flow from `/Cw8/s400049.dtsx` package.
 
 
 ## 2023-11-26
