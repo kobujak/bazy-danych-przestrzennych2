@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## 2024-01-14
+
+### Added
+
+- New directory with ETL script `/projekt`. This directory contains shell scirpt `/projekt/s400049.sh` which downloads file, validates it and inserts records into postgre database.
+  Additionally there are two sql queries `/projekt/create_table.sql` and `/projekt/update_table.sql` which are used while script is executed. Logfile  `/projekt/s400049_01142024.log` with example output is also provided.
+  For more information about check changelog in script.
+
 ## 2023-12-04
 
 ### Added

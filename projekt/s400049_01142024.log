@@ -1,0 +1,18 @@
+
+Start of Processing - 20240114202710
+---------------------------------------------
+
+20240114202711 - Download step - Succesful
+20240114202711 - Unzip step - Succesful
+20240114202711 - Remove empty lines - Succesful
+20240114202711 - Remove duplicates - Succesful
+20240114202711 - Remove rows not matching with header - Succesful
+20240114202711 - Remove rows with wrong OrderQuantity - Succesful
+20240114202711 - Remove rows with value in SecretCode - Succesful
+20240114202711 - Remove rows with value in CustomerName - Succesful
+20240114202711 - Split CustomerName into two new columns - Succesful
+20240114202711 - Preparing postgres database - Succesful
+20240114202711 - Import validated file - Succesful
+20240114202711 - Update Secret Code - Succesful
+20240114202711 - Export CUSTOMERS_400049 table to .csv file - Succesful
+20240114202711 - Add CUSTOMERS_400049 to archive - Succesful
