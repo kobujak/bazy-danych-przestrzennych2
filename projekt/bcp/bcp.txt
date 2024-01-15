@@ -1,0 +1,19 @@
+
+#Stworzenie pliku fmt
+ 
+ 
+ bcp AdventureWorksDW2019.dbo.CUSTOMERS_400049 format nul -t'|' -r'0x0A' -c -f CUSTOMERS_400049.fmt -T
+
+#Import plików z pliku csv
+  
+ bcp AdventureWorksDW2019.dbo.CUSTOMERS_400049 IN CUSTOMERS_400049.csv -f CUSTOMERS_400049.fmt -T
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## 2024-01-15
+
+
+### Added
+- Catalog `/projekt/bcp`  with commands in `/projekt/bcp/bcp.txt` to create `/projekt/bcp/CUSTOMERS_400049.fmt` and add result file to Sql Server database using bcp.
+- Result file from ETL processing `/projekt/bcp/CUSTOMERS_400049.csv`
+- Format file `/projekt/bcp/CUSTOMERS_400049.fmt`
+- Screenshot `/projekt/400049.png` of results form table *CUSTOMERS_400049* 
+
+### Changed
+- Added sql password encrpytion in base64 to script `/projekt/s400049.sh`. User now must provide password for his postgresql database
+
+### Fixed
+- Fixed randomizing SecretCode value in `/projekt/update_table.sql`
+
 ## 2024-01-14
+
 
 ### Added
 
@@ -16,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   For more information about check changelog in script.
 
 ## 2023-12-04
+
 
 ### Added
 

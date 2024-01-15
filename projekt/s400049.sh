@@ -10,8 +10,14 @@
 # unzips downloaded file and performs validation. Then validated records are inserted into newly created table 
 # in postgre database. Script updates column SecretCode and exports updated row to .csv file which is then added to archive
 # 
+# Script assumes that you have postgresql installed, your host is 'localhost', your user is 'postgres'and your port is 5432.
+# You only need to pass password for user postgres as argument, which is encoded into base64 in this script.
+# Script should be run with commang s400049.sh yourdbpassword (yourdbpassword should be replaced by you actual password)
+# Other database parameters can be changed under #Database data, variables beginning with PSQL_
+#
 # Changelog:
 # Version 1.0 - Initial release
+# Version 1.1 - updated SecretCode generation, added database password encryption
 #
 ###################################################
 
@@ -28,17 +34,22 @@ TMP="tmp.txt"
 TMP2="tmp2.txt"
 BAD_ROWS="$(basename "$FILE_NAME" .txt).bad_${TIMESTAMP}"
 OUTPUT_FILE="./PROCESSED/${TIMESTAMP}_${FILE_NAME}"
-
-
-#Databases data
 NRINDEKSU=400049
+
+#Database data
+
+PSQL_PSSWD=$(echo -n $1 | base64)
 PSQL_USER=postgres
-PSQL_PSSWD=admin
 PSQL_HOST=localhost
 PSQL_PORT=5432
 PSQL_TABLE=CUSTOMERS_$NRINDEKSU
 PSQL_CREATE="./create_table.sql" 
-PSQL_UPDATE="./update_table.sql" 
+PSQL_UPDATE="./update_table.sql"
+
+
+DECODED_PSQL_PSSWD=$(echo -n $PSQL_PSSWD | base64 --decode)
+psql_conn_str="postgresql://$PSQL_USER:$DECODED_PSQL_PSSWD@$PSQL_HOST:$PSQL_PORT/postgres"
+
 
 
 
@@ -138,7 +149,6 @@ reset_tmp_files
 
 #Prepare and load to database
 
-psql_conn_str="postgresql://$PSQL_USER:$PSQL_PSSWD@$PSQL_HOST:$PSQL_PORT/postgres"
 
 psql -q $psql_conn_str -f $PSQL_CREATE 
 

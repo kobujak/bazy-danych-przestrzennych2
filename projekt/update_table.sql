@@ -1,1 +1,1 @@
-UPDATE CUSTOMERS_400049 SET SecretCode= substr(md5(random()::text), 0,10);
+UPDATE CUSTOMERS_400049 SET SecretCode= substr(md5(random()::text), 0,11);
