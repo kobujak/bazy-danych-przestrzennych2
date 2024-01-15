@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## 2024-01-15
+
+
+### Added
+- Package `/Cw11/s400049.dtsx` which exectutes Web Service Task
+- WSDL `/Cw11/calc_400049.wsdl` file which is used to get methods from web service 
+- Result file from task execution `/Cw11/calc_400049.txt`
 
 ## 2024-01-15
 
